@@ -8,7 +8,7 @@ void InitButtons(){
     Button Mic_btn(gerneral::btn_Group::Tab_Group,"Mic_Tab",Mic_Icon,2,0,230,gerneral::Tab::Mic);
     Button Settings_btn(gerneral::btn_Group::Tab_Group,"Settings_Tab",Settings_Icon,2,0,400,gerneral::Tab::Settings);
 
-    //Sidebar
+
     Button AddSound_btn(gerneral::btn_Group::Soundboard_Group,"AddSound",60,gerneral::AddSoundButtonY,Vector2{730,50},0.5);
 
 

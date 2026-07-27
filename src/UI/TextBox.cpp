@@ -1,5 +1,6 @@
 #include "TextBox.h"
 
+
 TextBox::TextBox(Rectangle rect, const std::string& placeholder, bool isKeyBox)
     : rect(rect), text(placeholder), active(false), name(placeholder), isKeyBox(isKeyBox) {}
 
@@ -70,6 +71,5 @@ void TextBox::Draw()
 
 bool TextBox::IsClicked()
 {
-    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
-           CheckCollisionPointRec(GetMousePosition(), rect);
+    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), rect);
 }

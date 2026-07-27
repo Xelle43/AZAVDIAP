@@ -11,10 +11,11 @@ inline std::string ButtonName;
 inline float yPosAddButton;
 
 
-void addSound(std::string name, std::string path);
+void addSound(std::string name,std::string text,std::string path,bool IsnewSound);
 void RenderSoundboard();
 void CheckButtonPressed();
 void InitSoundboardAddButton();
 void UpdateSoundBoardBoxes();
+void LoadJsonSounds();
 std::string GetButtonPressedName();
 

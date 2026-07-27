@@ -1,7 +1,14 @@
 #pragma once
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <fstream>
+#include <string>
+
+namespace fs = std::filesystem;
+using json = nlohmann::json;
 
 namespace gerneral{
-
+inline std::string configPath = std::string(getenv("HOME")) + "/.config/soundboard/config.json";
 enum Tab{
     Soundboard,
     Mic,

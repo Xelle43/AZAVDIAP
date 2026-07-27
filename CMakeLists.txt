@@ -12,11 +12,16 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
 
 
+
 if(UNIX AND NOT APPLE)
     find_package(PkgConfig QUIET)
     if(PKG_CONFIG_FOUND)
         pkg_check_modules(WAYLAND wayland-client)
     endif()
+    install(
+    FILES default_config.json
+    DESTINATION share/soundboard
+    )
 
     if(WAYLAND_FOUND)
         message(STATUS "Wayland +X11")

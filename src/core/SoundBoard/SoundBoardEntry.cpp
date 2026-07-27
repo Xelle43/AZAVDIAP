@@ -1,10 +1,13 @@
 #include "SoundboardEntry.h"
+#include <iostream>
+#include <raylib.h>
 
 
-SoundboardEntry::SoundboardEntry(std::string name,std::string path, float y){
+SoundboardEntry::SoundboardEntry(std::string name, float y, int id){
     this->name = name;
-    this->path = path;
+
     this->y = y;
+    this->id = id;
     boxes[0].UpdateY(y);
     boxes[0].SetId(BoxIdCounter++);
     boxes[1].UpdateY(y);
@@ -45,16 +48,19 @@ void SoundboardEntry::UpdateY(float y){
 }
 void SoundboardEntry::UpdateBoxes(){
     drawY = y - gerneral::scrollOffset;
+    bool IsBoxPressed = false;
     if(name != "button")
     {
         boxes[0].UpdateY(drawY);
         boxes[1].UpdateY(drawY);
         if(gerneral::justAdded) return;
-        for (int i = 0; i < (int)boxes.size(); i++)
+        for (int i = 0; i < (int)boxes.size(); i++){
+            
             if (boxes[i].IsClicked()) 
             {
-                if(boxes[i].GetText() == "set key") activeBox = boxes[i].GetId();
-                else if (boxes[i].GetText() == "set sound")
+                IsBoxPressed = true;
+                if(boxes[i].GetName() == "set key") activeBox = boxes[i].GetId();
+                else if (boxes[i].GetName() == "set sound")
                 {
                      std::string path = OpenFileDialog();
                     if(path != "")
@@ -65,6 +71,12 @@ void SoundboardEntry::UpdateBoxes(){
                 }
                  
             }
+        }
+        if(!IsBoxPressed && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {   
+           activeBox = -1;
+        }
+        std::cout << activeBox << std::endl;
 
         if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_ESCAPE))
             activeBox = -1;
@@ -74,4 +86,11 @@ void SoundboardEntry::UpdateBoxes(){
             boxes[i].Update(activeBox == boxes[i].GetId());
         }
     }
+}
+void SoundboardEntry::SetKey(std::string key){
+ boxes[0].SetText(key);
+}
+
+void SoundboardEntry::SetPath(std::string path){
+boxes[1].SetText(path);
 }

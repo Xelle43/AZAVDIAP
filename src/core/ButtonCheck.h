@@ -5,7 +5,7 @@
 
 inline void CheckButtons(){
     if(PressedButton == "AddSound"){
-        addSound("New Sound", "");
+        addSound("New Sound","","",true);
     }
 
 }
